@@ -8,12 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ysy.jetpackdemo.R;
 
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
+    private TextView mMsgTextView;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -23,14 +25,22 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.main_fragment, container, false);
+        initViews(rootView);
+        return rootView;
+    }
+
+    private void initViews(View view) {
+        mMsgTextView = view.findViewById(R.id.message);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        // TODO: Use the ViewModel
+        mViewModel.getMessage().observe(this, msg -> {
+            mMsgTextView.setText(msg);
+        });
+        mViewModel.refreshMessage();
     }
-
 }
