@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,7 @@ public class BlankFragment2 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(getActivity()).get(BlankViewModel.class);
         mViewModel.getLinkData().observe(this, s -> {
+            Log.d("TEST-1", "mText3.setText(" + s + ")");
             mText3.setText(s);
         });
     }

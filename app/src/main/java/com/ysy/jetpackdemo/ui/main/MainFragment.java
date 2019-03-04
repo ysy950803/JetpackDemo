@@ -34,7 +34,11 @@ public class MainFragment extends Fragment {
 
     private void initViews(View view) {
         mMsgTextView = view.findViewById(R.id.message);
-        mMsgTextView.setOnClickListener(v -> startActivity(new Intent(getContext(), Main2Activity.class)));
+        mMsgTextView.setOnClickListener(v -> {
+            if (mMsgTextView.getText().toString().contains("8s")) {
+                startActivity(new Intent(getContext(), Main2Activity.class));
+            }
+        });
     }
 
     @Override
