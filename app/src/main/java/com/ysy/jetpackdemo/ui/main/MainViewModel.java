@@ -9,13 +9,14 @@ import android.arch.lifecycle.ViewModel;
 public class MainViewModel extends ViewModel {
 
     private MediatorLiveData<String> message; // merge msg1 and msg2
-    private MutableLiveData<String> msg1, msg2;
+    private MutableLiveData<String> msg1;
+    private MutableLiveData<Integer> msg2;
 
     public LiveData<String> getMessage() {
         if (message == null) {
             message = new MediatorLiveData<>();
             message.addSource(getMsg1(), s -> message.setValue(s));
-            message.addSource(getMsg2(), s -> message.setValue(s));
+            message.addSource(getMsg2(), i -> message.setValue(i));
         }
         return message;
     }
@@ -31,9 +32,15 @@ public class MainViewModel extends ViewModel {
     private LiveData<String> getMsg2() {
         if (msg2 == null) {
             msg2 = new MutableLiveData<>();
-            msg2.setValue("Now");
+            msg2.setValue(0);
         }
-        return Transformations.map(msg2, input -> input + " msg2");
+        return Transformations.switchMap(msg2, this::switchMsg2);
+    }
+
+    private LiveData<String> switchMsg2(int input) {
+        MutableLiveData<String> result = new MutableLiveData<>();
+        result.setValue(String.valueOf(input) + "s later msg2");
+        return result;
     }
 
     public void refreshMessage() {
@@ -44,7 +51,7 @@ public class MainViewModel extends ViewModel {
                     if ((i + 1) % 2 != 0) {
                         msg1.postValue((i + 1) + "s later");
                     } else {
-                        msg2.postValue((i + 1) + "s later");
+                        msg2.postValue(i + 1);
                     }
                 }
             } catch (InterruptedException e) {

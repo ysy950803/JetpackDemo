@@ -1,6 +1,7 @@
 package com.ysy.jetpackdemo.ui.main;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ysy.jetpackdemo.Main2Activity;
 import com.ysy.jetpackdemo.R;
 
 public class MainFragment extends Fragment {
@@ -32,6 +34,7 @@ public class MainFragment extends Fragment {
 
     private void initViews(View view) {
         mMsgTextView = view.findViewById(R.id.message);
+        mMsgTextView.setOnClickListener(v -> startActivity(new Intent(getContext(), Main2Activity.class)));
     }
 
     @Override
