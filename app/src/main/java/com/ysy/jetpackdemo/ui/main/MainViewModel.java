@@ -1,10 +1,10 @@
 package com.ysy.jetpackdemo.ui.main;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Transformations;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModel;
 
 public class MainViewModel extends ViewModel {
 
@@ -46,7 +46,7 @@ public class MainViewModel extends ViewModel {
     public void refreshMessage() {
         new Thread(() -> {
             try {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 6; i < 8; i++) {
                     Thread.sleep(1000);
                     if ((i + 1) % 2 != 0) {
                         msg1.postValue((i + 1) + "s later");

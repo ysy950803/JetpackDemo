@@ -1,11 +1,8 @@
 package com.ysy.jetpackdemo.ui.main2;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ysy.jetpackdemo.R;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,6 +86,19 @@ public class BlankFragment2 extends Fragment {
             Log.d("TEST-1", "mText3.setText(" + s + ")");
             mText3.setText(s);
         });
+//        mViewModel.getAllUsers().observe(this, users -> {
+//            if (users != null && users.get(0) != null) {
+//                mText3.setText(users.get(0).firstName);
+//                Log.d("TEST-1", users + "");
+//            }
+//        });
+//        new Thread(() -> {
+//            List<User> data = mViewModel.getAllUsers();
+//            Log.d("TEST-1", data + "");
+//            if (data != null) {
+//                Log.d("TEST-1", data.size() + "");
+//            }
+//        }).start();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
