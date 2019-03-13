@@ -41,7 +41,7 @@ public class BlankViewModel extends AndroidViewModel {
             User user = new User();
             user.firstName = name + " " + System.currentTimeMillis();
             user.lastName = " ";
-            mUserDao.insertAll(user);
+            mUserDao.insert(user);
         }).start();
     }
 }

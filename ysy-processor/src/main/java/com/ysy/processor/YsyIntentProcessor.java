@@ -32,7 +32,7 @@ import javax.tools.Diagnostic;
 @AutoService(Processor.class)
 public class YsyIntentProcessor extends AbstractProcessor {
 
-    private static final String METHOD_PREFIX = "start";
+    private static final String METHOD_PREFIX = "intent";
     private static final ClassName CLASS_INTENT = ClassName.get("android.content", "Intent");
     private static final ClassName CLASS_CONTEXT = ClassName.get("android.content", "Context");
 

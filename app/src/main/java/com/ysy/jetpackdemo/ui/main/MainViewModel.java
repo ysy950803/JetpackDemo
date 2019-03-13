@@ -1,16 +1,29 @@
 package com.ysy.jetpackdemo.ui.main;
 
+import com.ysy.jetpackdemo.workmanager.UserWorker;
+
+import java.util.concurrent.TimeUnit;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 public class MainViewModel extends ViewModel {
 
     private MediatorLiveData<String> message; // merge msg1 and msg2
     private MutableLiveData<String> msg1;
     private MutableLiveData<Integer> msg2;
+
+    private WorkManager mWorkManager;
+
+    public MainViewModel() {
+        mWorkManager = WorkManager.getInstance();
+    }
 
     public LiveData<String> getMessage() {
         if (message == null) {
@@ -46,7 +59,7 @@ public class MainViewModel extends ViewModel {
     public void refreshMessage() {
         new Thread(() -> {
             try {
-                for (int i = 6; i < 8; i++) {
+                for (int i = 0; i < 8; i++) {
                     Thread.sleep(1000);
                     if ((i + 1) % 2 != 0) {
                         msg1.postValue((i + 1) + "s later");
@@ -58,5 +71,17 @@ public class MainViewModel extends ViewModel {
                 e.printStackTrace();
             }
         }).start();
+        scheduleWork();
+    }
+
+    private void scheduleWork() {
+        Data data = new Data.Builder()
+                .putInt(UserWorker.DATA_KEY, 1)
+                .build();
+        OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(UserWorker.class)
+                .setInputData(data)
+                .setInitialDelay(1000 * 8, TimeUnit.MILLISECONDS)
+                .build();
+        mWorkManager.enqueue(request);
     }
 }
