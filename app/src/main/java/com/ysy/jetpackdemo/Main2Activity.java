@@ -2,20 +2,23 @@ package com.ysy.jetpackdemo;
 
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.ysy.annotation.YsyIntent;
 import com.ysy.jetpackdemo.ui.main2.BlankFragment;
 import com.ysy.jetpackdemo.ui.main2.BlankFragment2;
 import com.ysy.jetpackdemo.ui.main2.ItemListDialogFragment;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+@YsyIntent
 public class Main2Activity extends AppCompatActivity implements ItemListDialogFragment.Listener,
         BlankFragment2.OnFragmentInteractionListener {
 

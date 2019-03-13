@@ -1,13 +1,12 @@
 package com.ysy.jetpackdemo.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.ysy.jetpackdemo.Main2Activity;
+import com.ysy.jetpackdemo.Navigator;
 import com.ysy.jetpackdemo.R;
 
 import androidx.annotation.NonNull;
@@ -37,7 +36,8 @@ public class MainFragment extends Fragment {
         mMsgTextView = view.findViewById(R.id.message);
         mMsgTextView.setOnClickListener(v -> {
             if (mMsgTextView.getText().toString().contains("8s")) {
-                startActivity(new Intent(getContext(), Main2Activity.class));
+//                startActivity(new Intent(getContext(), Main2Activity.class));
+                Navigator.startMain2Activity(getContext());
             }
         });
     }
