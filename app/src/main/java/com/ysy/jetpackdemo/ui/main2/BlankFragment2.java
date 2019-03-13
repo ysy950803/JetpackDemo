@@ -86,19 +86,12 @@ public class BlankFragment2 extends Fragment {
             Log.d("TEST-1", "mText3.setText(" + s + ")");
             mText3.setText(s);
         });
-//        mViewModel.getAllUsers().observe(this, users -> {
-//            if (users != null && users.get(0) != null) {
-//                mText3.setText(users.get(0).firstName);
-//                Log.d("TEST-1", users + "");
-//            }
-//        });
-//        new Thread(() -> {
-//            List<User> data = mViewModel.getAllUsers();
-//            Log.d("TEST-1", data + "");
-//            if (data != null) {
-//                Log.d("TEST-1", data.size() + "");
-//            }
-//        }).start();
+        mViewModel.getAllUsers().observe(this, users -> {
+            if (users != null && users.size() > 0) {
+                mText3.setText(users.get(0).firstName);
+                Log.d("TEST-1", users + "");
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

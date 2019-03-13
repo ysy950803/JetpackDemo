@@ -16,23 +16,18 @@ import androidx.lifecycle.MutableLiveData;
 public class BlankViewModel extends AndroidViewModel {
 
     private final MutableLiveData<String> linkData = new MutableLiveData<>();
-    private AppDatabase mDB;
     private UserDao mUserDao;
 
     public BlankViewModel(@NonNull Application application) {
         super(application);
-        mDB = AppDatabase.getInstance(application);
+        AppDatabase db = AppDatabase.getInstance(application);
+        mUserDao = db.userDao();
+        // TODO Test
         new Thread(() -> {
-//            User user = new User();
-//            user.firstName = "f" + System.currentTimeMillis();
-//            user.lastName = "l";
-//            mUserDao.insertAll(user);
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            mUserDao = mDB.userDao();
+            User user = new User();
+            user.firstName = "f" + System.currentTimeMillis();
+            user.lastName = "l";
+            mUserDao.insertAll(user);
         }).start();
     }
 
@@ -47,8 +42,4 @@ public class BlankViewModel extends AndroidViewModel {
     public LiveData<List<User>> getAllUsers() {
         return mUserDao.getAll();
     }
-
-//    public List<User> getAllUsers() {
-//        return mUserDao.getAll();
-//    }
 }
