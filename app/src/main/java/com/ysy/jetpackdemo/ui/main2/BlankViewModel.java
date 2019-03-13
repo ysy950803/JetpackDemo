@@ -22,13 +22,6 @@ public class BlankViewModel extends AndroidViewModel {
         super(application);
         AppDatabase db = AppDatabase.getInstance(application);
         mUserDao = db.userDao();
-        // TODO Test
-        new Thread(() -> {
-            User user = new User();
-            user.firstName = "f" + System.currentTimeMillis();
-            user.lastName = "l";
-            mUserDao.insertAll(user);
-        }).start();
     }
 
     public MutableLiveData<String> getLinkData() {
@@ -41,5 +34,14 @@ public class BlankViewModel extends AndroidViewModel {
 
     public LiveData<List<User>> getAllUsers() {
         return mUserDao.getAll();
+    }
+
+    public void insertUser(String name) {
+        new Thread(() -> {
+            User user = new User();
+            user.firstName = name + " " + System.currentTimeMillis();
+            user.lastName = " ";
+            mUserDao.insertAll(user);
+        }).start();
     }
 }

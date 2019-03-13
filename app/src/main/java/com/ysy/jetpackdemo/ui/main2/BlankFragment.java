@@ -18,7 +18,7 @@ public class BlankFragment extends Fragment {
 
     private BlankViewModel mViewModel;
     private EditText mEdt1;
-    private Button mBtn1;
+    private Button mBtn1, mBtn2;
 
     public static BlankFragment newInstance() {
         return new BlankFragment();
@@ -30,6 +30,7 @@ public class BlankFragment extends Fragment {
         View view = inflater.inflate(R.layout.blank_fragment, container, false);
         mEdt1 = view.findViewById(R.id.edt1);
         mBtn1 = view.findViewById(R.id.btn1);
+        mBtn2 = view.findViewById(R.id.btn2);
         return view;
     }
 
@@ -38,5 +39,6 @@ public class BlankFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(getActivity()).get(BlankViewModel.class);
         mBtn1.setOnClickListener(v -> mViewModel.sendLinkData(mEdt1.getText().toString()));
+        mBtn2.setOnClickListener(v -> mViewModel.insertUser(mEdt1.getText().toString()));
     }
 }

@@ -3,13 +3,13 @@ package com.ysy.jetpackdemo.ui.main2;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ysy.jetpackdemo.R;
+import com.ysy.jetpackdemo.room.User;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -36,7 +36,7 @@ public class BlankFragment2 extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private BlankViewModel mViewModel;
-    private TextView mText3;
+    private TextView mText3, mText31;
 
     public BlankFragment2() {
         // Required empty public constructor
@@ -75,6 +75,7 @@ public class BlankFragment2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_blank_fragment2, container, false);
         mText3 = view.findViewById(R.id.text3);
+        mText31 = view.findViewById(R.id.text31);
         return view;
     }
 
@@ -83,13 +84,15 @@ public class BlankFragment2 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(getActivity()).get(BlankViewModel.class);
         mViewModel.getLinkData().observe(this, s -> {
-            Log.d("TEST-1", "mText3.setText(" + s + ")");
             mText3.setText(s);
         });
         mViewModel.getAllUsers().observe(this, users -> {
             if (users != null && users.size() > 0) {
-                mText3.setText(users.get(0).firstName);
-                Log.d("TEST-1", users + "");
+                StringBuilder names = new StringBuilder();
+                for (User user : users) {
+                    names.append(user.firstName).append("\n");
+                }
+                mText31.setText(names.toString());
             }
         });
     }
