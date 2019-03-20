@@ -5,9 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.ysy.jetpackdemo.Navigator;
 import com.ysy.jetpackdemo.R;
+import com.ysy.jetpackdemo.HiddenAPITest;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +38,9 @@ public class MainFragment extends Fragment {
         mMsgTextView.setOnClickListener(v -> {
 //            if (mMsgTextView.getText().toString().contains("8s")) {
 //                startActivity(new Intent(getContext(), Main2Activity.class));
-                startActivity(Navigator.intentMain2Activity(getContext()));
+//                startActivity(Navigator.intentMain2Activity(getContext()));
+            Toast.makeText(getContext(), "" + HiddenAPITest.checkPermission(getContext(), "OP_POST_NOTIFICATION"),
+                    Toast.LENGTH_SHORT).show();
 //            }
         });
     }

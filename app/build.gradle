@@ -70,4 +70,6 @@ dependencies {
     // Practice of annotation
     implementation project(':ysy-annotation')
     annotationProcessor project(':ysy-processor')
+
+    implementation 'me.weishu:free_reflection:1.2.0'
 }
