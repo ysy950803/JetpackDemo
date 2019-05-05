@@ -1,1 +1,1 @@
-include ':app', ':ysy-annotation', ':ysy-processor'
+include ':app', ':ysy-annotation', ':ysy-processor', ':demo'

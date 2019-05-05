@@ -1,6 +1,7 @@
 package com.ysy.jetpackdemo.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,5 +54,11 @@ public class MainFragment extends Fragment {
             mMsgTextView.setText(msg);
         });
         mViewModel.refreshMessage();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("TEST-1", "MainFragment onDestroy");
     }
 }

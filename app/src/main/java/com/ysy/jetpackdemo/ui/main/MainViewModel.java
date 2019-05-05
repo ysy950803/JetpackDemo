@@ -1,5 +1,7 @@
 package com.ysy.jetpackdemo.ui.main;
 
+import android.util.Log;
+
 import com.ysy.jetpackdemo.workmanager.UserWorker;
 
 import java.util.concurrent.TimeUnit;
@@ -23,6 +25,12 @@ public class MainViewModel extends ViewModel {
 
     public MainViewModel() {
         mWorkManager = WorkManager.getInstance();
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        Log.d("TEST-1", "MainViewModel onCleared");
     }
 
     public LiveData<String> getMessage() {
