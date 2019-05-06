@@ -20,18 +20,18 @@ android {
 }
 
 dependencies {
-    def appcompatVer = '1.1.0-alpha04'
-    def lifecycleExtVer = '2.1.0-alpha04'
-    def retrofitVer = '2.4.0'
-    def okhttpVer = '3.11.0'
+    def appcompat_v = '1.1.0-alpha04'
+    def lifecycle_extensions_v = '2.1.0-alpha04'
+    def retrofit_v = '2.4.0'
+    def okhttp_v = '3.11.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // base
-    implementation "androidx.appcompat:appcompat:$appcompatVer"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtVer"
+    implementation "androidx.appcompat:appcompat:$appcompat_v"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions_v"
 
-    // retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVer"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVer"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVer"
+    // retrofit + okhttp
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_v"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_v"
 }

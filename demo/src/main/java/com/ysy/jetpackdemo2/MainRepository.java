@@ -10,7 +10,6 @@ public class MainRepository {
 
     private static final MainRepository INSTANCE = new MainRepository();
     private final MutableLiveData<Card> card = new MutableLiveData<>();
-    private WebService webService;
 
     private MainRepository() {
     }
@@ -36,7 +35,7 @@ public class MainRepository {
         }).start();
 
         // 网络数据
-        webService.getCard().enqueue(new Callback<Card>() {
+        ApiClient.getService().getCard().enqueue(new Callback<Card>() {
             @Override
             public void onResponse(Call<Card> call, Response<Card> response) {
                 card.setValue(response.body());
