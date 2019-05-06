@@ -21,7 +21,7 @@ public class ApiClient {
             synchronized (ApiClient.class) {
                 if (sRetrofit == null) {
                     sRetrofit = new Retrofit.Builder()
-                            .baseUrl("http://xxx.xxx")
+                            .baseUrl("http://xxx.xxx.xxx")
                             .client(getClient())
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
