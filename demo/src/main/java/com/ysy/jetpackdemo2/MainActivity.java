@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mViewModel.getRepoState().observe(this, new Observer<RepoState>() {
             @Override
             public void onChanged(RepoState repoState) {
-                // update tips UI
+                // update tips UI, such as dialog, error view, empty view
                 Log.d("TEST-1", repoState.getState() + "");
             }
         });
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(User user) {
                 // update UI
+                // ...
             }
         });
     }

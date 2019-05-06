@@ -18,8 +18,9 @@ public class MainRepository {
     private static final MainRepository INSTANCE = new MainRepository();
     private static RepoState sRepoState = new RepoState();
 
-    // 可为数据获取状态单独设置LiveData，对外暴露“加载中”、“加载失败”等状态
+    // 数据获取状态LiveData：对外暴露“加载中”、“加载失败”等情况
     private final MutableLiveData<RepoState> repoState = new MutableLiveData<>();
+
     private final MutableLiveData<Card> card = new MutableLiveData<>();
     private final MutableLiveData<User> user = new MutableLiveData<>();
 
@@ -35,7 +36,7 @@ public class MainRepository {
         repoState.setValue(sRepoState);
     }
 
-    public MutableLiveData<RepoState> getRepoState() {
+    public LiveData<RepoState> getRepoState() {
         return repoState;
     }
 
@@ -52,9 +53,11 @@ public class MainRepository {
                     e.printStackTrace();
                 }
 
+                // 若网络数据已加载完毕，则无需使用本地数据
                 if (repoState.getValue() != null && !repoState.getValue().isFinished()) {
                     Card localData = new Card();
                     localData.setTitle("Test");
+                    // 子线程用postValue
                     card.postValue(localData);
                 }
             }
