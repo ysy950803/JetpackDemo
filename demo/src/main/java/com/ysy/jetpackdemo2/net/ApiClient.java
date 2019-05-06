@@ -8,8 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static OkHttpClient sOkHttpClient;
-    private static Retrofit sRetrofit;
+    private volatile static OkHttpClient sOkHttpClient;
+    private volatile static Retrofit sRetrofit;
 
     public static WebService getService() {
         // 构造request
