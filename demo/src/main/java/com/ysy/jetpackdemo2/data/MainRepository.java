@@ -35,6 +35,10 @@ public class MainRepository {
         repoState.setValue(sRepoState);
     }
 
+    public MutableLiveData<RepoState> getRepoState() {
+        return repoState;
+    }
+
     public LiveData<Card> getCard() {
         updateState(RepoState.LOADING);
         // 本地数据
@@ -50,7 +54,7 @@ public class MainRepository {
 
                 if (repoState.getValue() != null && !repoState.getValue().isFinished()) {
                     Card localData = new Card();
-                    localData.setTitle("test");
+                    localData.setTitle("Test");
                     card.postValue(localData);
                 }
             }

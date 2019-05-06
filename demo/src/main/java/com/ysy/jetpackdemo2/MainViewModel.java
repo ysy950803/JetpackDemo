@@ -2,6 +2,7 @@ package com.ysy.jetpackdemo2;
 
 import com.ysy.jetpackdemo2.data.entity.Card;
 import com.ysy.jetpackdemo2.data.MainRepository;
+import com.ysy.jetpackdemo2.data.entity.RepoState;
 import com.ysy.jetpackdemo2.data.entity.User;
 
 import androidx.arch.core.util.Function;
@@ -11,6 +12,10 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 public class MainViewModel extends ViewModel {
+
+    public LiveData<RepoState> getRepoState() {
+        return MainRepository.getInstance().getRepoState();
+    }
 
     public LiveData<User> getUser() {
         // 可用Repository给出的源数据做一些转换操作

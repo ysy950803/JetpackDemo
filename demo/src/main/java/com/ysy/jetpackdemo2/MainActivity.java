@@ -1,9 +1,11 @@
 package com.ysy.jetpackdemo2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.ysy.jetpackdemo2.data.entity.Card;
+import com.ysy.jetpackdemo2.data.entity.RepoState;
 import com.ysy.jetpackdemo2.data.entity.User;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
     private void initViewModel() {
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
+        mViewModel.getRepoState().observe(this, new Observer<RepoState>() {
+            @Override
+            public void onChanged(RepoState repoState) {
+                // update tips UI
+                Log.d("TEST-1", repoState.getState() + "");
+            }
+        });
         mViewModel.getCard().observe(this, new Observer<Card>() {
             @Override
             public void onChanged(Card card) {
