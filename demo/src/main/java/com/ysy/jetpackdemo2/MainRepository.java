@@ -20,6 +20,22 @@ public class MainRepository {
     }
 
     public LiveData<Card> getCard() {
+        // 本地数据
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Card localData = new Card();
+                localData.setTitle("test");
+                card.postValue(localData);
+            }
+        }).start();
+
+        // 网络数据
         webService.getCard().enqueue(new Callback<Card>() {
             @Override
             public void onResponse(Call<Card> call, Response<Card> response) {
@@ -30,6 +46,7 @@ public class MainRepository {
             public void onFailure(Call<Card> call, Throwable t) {
             }
         });
+
         return card;
     }
 }
