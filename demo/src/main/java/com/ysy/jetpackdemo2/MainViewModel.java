@@ -13,22 +13,38 @@ import androidx.lifecycle.ViewModel;
 
 public class MainViewModel extends ViewModel {
 
+    private MainRepository repository;
+    private LiveData<User> user;
+
+    public MainViewModel() {
+        repository = MainRepository.getInstance();
+    }
+
     public LiveData<RepoState> getRepoState() {
-        return MainRepository.getInstance().getRepoState();
+        return repository.getRepoState();
     }
 
     public LiveData<User> getUser() {
         // 可用Repository给出的源数据做一些转换操作
-        return Transformations.switchMap(MainRepository.getInstance().getUser(), new Function<User, LiveData<User>>() {
+        user = Transformations.switchMap(repository.getUser(), new Function<User, LiveData<User>>() {
             @Override
             public LiveData<User> apply(User input) {
                 input.setName(input.getName() + "_modified");
                 return new MutableLiveData<>(input);
             }
         });
+        return user;
+    }
+
+    public void modifyUser(String newName) {
+        User u = user.getValue();
+        if (u != null) {
+            u.setName(newName);
+        }
+        repository.modifyUser(u);
     }
 
     public LiveData<Card> getCard() {
-        return MainRepository.getInstance().getCard();
+        return repository.getCard();
     }
 }

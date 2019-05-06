@@ -40,6 +40,17 @@ public class MainRepository {
         return repoState;
     }
 
+    public LiveData<User> getUser() {
+        return user;
+    }
+
+    public void modifyUser(User userValue) {
+        // TODO 模拟数据库插入或者更新缓存
+        // userDao.insert(userValue);
+
+        user.setValue(userValue);
+    }
+
     public LiveData<Card> getCard() {
         updateState(RepoState.LOADING);
         // 本地数据
@@ -79,9 +90,5 @@ public class MainRepository {
         });
 
         return card;
-    }
-
-    public LiveData<User> getUser() {
-        return user;
     }
 }

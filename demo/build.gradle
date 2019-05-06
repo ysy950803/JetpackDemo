@@ -21,14 +21,14 @@ android {
 
 dependencies {
     def appcompat_v = "1.1.0-alpha04"
-    def lifecycle_extensions_v = "2.1.0-alpha04"
+    def lifecycle_v = "2.1.0-alpha04"
     def retrofit_v = "2.5.0"
     def okhttp_v = "3.12.1"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // base
     implementation "androidx.appcompat:appcompat:$appcompat_v"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions_v"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_v"
 
     // retrofit + okhttp
     implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
