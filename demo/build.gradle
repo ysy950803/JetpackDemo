@@ -20,10 +20,10 @@ android {
 }
 
 dependencies {
-    def appcompat_v = '1.1.0-alpha04'
-    def lifecycle_extensions_v = '2.1.0-alpha04'
-    def retrofit_v = '2.4.0'
-    def okhttp_v = '3.11.0'
+    def appcompat_v = "1.1.0-alpha04"
+    def lifecycle_extensions_v = "2.1.0-alpha04"
+    def retrofit_v = "2.5.0"
+    def okhttp_v = "3.12.1"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // base

@@ -1,4 +1,4 @@
-package com.ysy.jetpackdemo2;
+package com.ysy.jetpackdemo2.data.entity;
 
 public class User {
 

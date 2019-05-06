@@ -3,6 +3,9 @@ package com.ysy.jetpackdemo2;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.ysy.jetpackdemo2.data.entity.Card;
+import com.ysy.jetpackdemo2.data.entity.User;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViewModel() {
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
         mViewModel.getCard().observe(this, new Observer<Card>() {
             @Override
             public void onChanged(Card card) {
@@ -34,10 +38,16 @@ public class MainActivity extends AppCompatActivity {
                 mTestTxtView.setText(card.getTitle());
             }
         });
+        mViewModel.getUser().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                // update UI
+            }
+        });
     }
 
-    // 提供任意时机调用
-    private void refresh() {
-        mViewModel.loadData();
+    private void refreshAll() {
+        mViewModel.getUser();
+        mViewModel.getCard();
     }
 }

@@ -1,4 +1,4 @@
-package com.ysy.jetpackdemo2;
+package com.ysy.jetpackdemo2.net;
 
 import java.util.concurrent.TimeUnit;
 
